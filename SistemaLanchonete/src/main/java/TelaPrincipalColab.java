@@ -892,6 +892,11 @@ public class TelaPrincipalColab extends javax.swing.JFrame {
         });
 
         jMenuItem1.setText("Sobre");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -1221,6 +1226,11 @@ public class TelaPrincipalColab extends javax.swing.JFrame {
     private void receitaTotalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_receitaTotalMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_receitaTotalMouseEntered
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        CardLayout col1 = (CardLayout) jPanel4.getLayout();
+        col1.show(jPanel4, "sobreColab");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

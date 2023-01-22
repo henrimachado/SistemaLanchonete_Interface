@@ -23,6 +23,7 @@ public class SistemaLanchonete {
         Locale.setDefault(locale);
 
 
+
         /*
         TESTES DE FUNÇÕES 
         As chamadas a seguir representam testes de funções conforme as questões que poderiam ser identificadas
@@ -208,8 +209,14 @@ public class SistemaLanchonete {
         as soluções propostas. Assim, podem ser encontradas no código através do comando CTRL+SHIT+F com as chaves de busca (Ex.: Questão 1)
  
         Assim, para que o programa seja testado, basta que seja executado. 
-        Esperamos que tenha uma boa experiência!
+        Esperamos que tenha uma boa experiência! 
+        
+        Para execução, basta retirar os indicadores de comentários
          */
+ 
+        
+        
+        /*RETIRE AQUI
         System.out.println("""
                            \nTESTE DE FUNCIONAMENTO DO SISTEMA - FUNÇÃO STARTSISTEMA()
                            Esse teste se baseia no funcionamento do programa como um sistema completo
@@ -220,6 +227,13 @@ public class SistemaLanchonete {
                            """);
         SistemaLanchonete.startSistema();
 
+        E AQUI*/
+ /*
+        Também foi desenvolvido interface gráfica para algumas funções do programa. Para sua execução, basta retirar os indicadores de cometários
+         e executar o programa.
+         */
+        //TelaLogin startInterface = new TelaLogin();
+        //startInterface.setVisible(true);
     }
 
     /**

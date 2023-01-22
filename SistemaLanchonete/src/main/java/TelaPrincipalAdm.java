@@ -666,7 +666,7 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         );
         relVendasLayout.setVerticalGroup(
             relVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 546, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         painelAdm.add(relVendas, "relVendas");
@@ -776,6 +776,11 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
 
         jMenuItem17.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jMenuItem17.setText("Sair");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem17);
 
         jMenuBar1.add(jMenu1);
@@ -1005,6 +1010,12 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         CardLayout col1 = (CardLayout) painelAdm.getLayout();
         col1.show(painelAdm, "sobreAdm");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        this.setVisible(false);
+        TelaLogin novoLogin = new TelaLogin();
+        novoLogin.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     /**
      * @param args the command line arguments
