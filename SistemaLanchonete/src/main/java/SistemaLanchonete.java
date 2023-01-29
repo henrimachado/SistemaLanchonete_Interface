@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Collections;
 
-//INTERFACE
+
 /**
  * Classe principal para o Sistema da Lanchonete contendo o método main()
  *
  * @author Mateus Henrique Machado
  * @author Iago Mateus Ávila Fernandes
- * @version 1.2
+ * @version 2.0
  */
 //Questão 1 - Implementar todas as classes com base no diagrama de classes criado
 public class SistemaLanchonete {
@@ -22,21 +22,45 @@ public class SistemaLanchonete {
         Locale locale = new Locale("pt", "BR");
         Locale.setDefault(locale);
 
-
-
+        // O TESTE INDIVIDUAL DE CHAMADAS DE FUNÇÕES SE INICIA NA LINHA 73
+        
+        /* PARA USO DA FUNÇÃO startSistema(), retire-a do comentário na linha 38
+        ACESSO: 
+        ADMINISTRADOR:
+            login: admin
+            senha: admin
+        COLABORADOR
+            login: colab1
+            senha: colab1   */
+        
+        
+        //RETIRE AQUI \/
+        // SistemaLanchonete.startSistema(); 
+        
+        
+        
+        /*
+        INTERFACE GRÁFICA 
+        para inicializá-la, retire do comentário as linhas 47 e 48  */
+        
+        //Retire aqui \/
+        //TelaLogin startInterface = new TelaLogin();
+        //startInterface.setVisible(true);
+        
+        
+        
+        
+        
         /*
         TESTES DE FUNÇÕES 
-        As chamadas a seguir representam testes de funções conforme as questões que poderiam ser identificadas
-        pelo uso de funções. Questões como salvamento dinâmico podem ser conferidas usando CTRL+SHIFT+F e buscando
-        pela chave da questão (Ex.: Questão 1), uma vez que dizem mais da estrutura que está associada na declaração
-        das variáveis. 
+        -------------------------------------
+        As chamadas a seguir representam testes de funções conforme pedido pelas orientações do trabalho e que 
+        se deram na forma de construção de funções e/ou métodos. Nesse sentido, o teste está coerente com 
+        as restrições de uso a cada tipo de usuário, sendo que o login como Administrador permitirá
+        funções adequadas a ele e o mesmo para colaborador. Caso deseje acessar as outras funções, reinicie o 
+        sistema e realize um novo login com um tipo de usuário diferente. 
         
-        Ainda, tenha em mente que essas funções foram pensadas para serem executadas enquanto um sistema completo
-        e cujos diferentes componentes interagem entre si. Assim, as chamadas individuais das funções podem não apresentar 
-        o mesmo comportamento que aconteceria se estivessem sido chamadas pelo sistema (função startSistema que será a última
-        a ser chamada nessa lista. 
-        
-        PARA O ACESSO: 
+        PARA O TESTE DE ACESSO: 
         
         ADMINISTRADOR:
             login: admin
@@ -55,14 +79,14 @@ public class SistemaLanchonete {
 
         manipularJson mJson = new manipularJson();
 
-        //Questão 13 - Recuperar informações 
+        //Questão 13 - Recuperar informações de um arquivo Json
         mJson.assimilateAll();
 
         ProxyAdministrador menuAdm = new ProxyAdministrador();
         ProxyColaborador menuColab = new ProxyColaborador();
         Usuario usuarioAtual = new Usuario();
 
-        //Realizar login no sistema
+        //REALIZAR LOGIN NO SISTEMA
         System.out.println("LOGIN: ");
         Scanner inputLogin = new Scanner(System.in);
         System.out.printf("E- mail: ");
@@ -71,17 +95,17 @@ public class SistemaLanchonete {
         String senhaUsuario = inputLogin.nextLine();
         usuarioAtual = SistemaLanchonete.loginSistema(mJson, loginUsuario, senhaUsuario);
 
-        //Questão 2
+        //Questão 2 - O sistema deve ser utilizado por um administrador ou colaborador
         if (usuarioAtual instanceof Administrador) {
             System.out.println("\nTipo de usuário: Administrador    " + usuarioAtual);
 
             //Questão 6
-            //Cadastro
+            //Cadastro de cliente
             System.out.println("\nCADASTRO DE CLIENTE\n________________________");
             menuAdm.cadastroCliente();
 
             //Questão 6
-            //Alterar dados
+            //Alterar dados de cliente
             System.out.println("\nALTERAR DADOS DE CLIENTE\n_______________________");
             Scanner input = new Scanner(System.in);
             String CPFCliente;
@@ -93,15 +117,15 @@ public class SistemaLanchonete {
 
             menuAdm.modificarCliente(CPFCliente);
 
-            //Questão 7
+            //Questão 7 - Verificar dados de pedidos de clientes
             //Opção 5 - Listar pedidos
             System.out.println("\nLISTAR PEDIDOS\n_____________________");
             System.out.println("CPF do cliente: ");
             String CPF = input.nextLine();
             if (ProxyAdministrador.consultaCliente(CPF) != null) {
                 if (ProxyAdministrador.consultaCliente(CPF).getPedidosCliente().size() >= 1) {
-                    //Questão 12 - Implementar a interface Comparator para as classes Cliente e Pedido
                     System.out.println("Lista de pedidos do Cliente: ");
+                    //Questão 12 - Implementar a interface Comparator para as classes Cliente e Pedido
                     Collections.sort(ProxyAdministrador.consultaCliente(CPF).getPedidosCliente(), new PedidoComparator());
                     for (int k = 0; k < ProxyAdministrador.consultaCliente(CPF).getPedidosCliente().size(); k++) {
                         System.out.println(ProxyAdministrador.consultaCliente(CPF).getPedidosCliente().get(k));
@@ -116,8 +140,8 @@ public class SistemaLanchonete {
                 System.out.println("CPF inválido ou cliente não cadastrado.");
             }
 
-            //Questão 12
-            //Comparator clientes
+            //Questão 12 
+            //Comparator clientes - Listagem dos clientes cadastrados 
             System.out.println("\nORDENAÇÃO DE CLIENTES POR CPF\n_______________________");
             ClienteComparator comparator = new ClienteComparator();
             Collections.sort(ProxyAdministrador.getClientes(), comparator);
@@ -130,14 +154,16 @@ public class SistemaLanchonete {
 
             //Questão 10 e 11
             //Uso da variável privada
-            //Método "getQntClientesPrivate" - Questão 11
+            //Método "getQntClientesPrivate" - Questão 11 a
             ProxyAdministrador.setQntClientesPrivate();
             System.out.println("\nQuantidade de clientes cadastrados: " + ProxyAdministrador.getQntClientesPrivate());
 
             //Uso da variável protected
+            //Método "getClientesProtected" - Questão 11 b
             ProxyAdministrador.setQntClientesProtected();
             System.out.println("\nQuantidade de clientes cadastrados: " + ProxyAdministrador.qntClientesProtected);
 
+            //Questão 2 - Uso por colaborador
         } else if (usuarioAtual instanceof Colaborador) {
             System.out.println("Tipo de usuário: Colaborador     " + usuarioAtual);
 
@@ -168,7 +194,7 @@ public class SistemaLanchonete {
                 System.out.println(ProxyAdministrador.consultaCliente(CPF).getPedidosCliente().get(k));
             }
 
-            //Questão 14
+            //Questão 14 - Pesquisar pedidos em um intervalo de tempo
             System.out.println("\nLISTAR PEDIDOS\n_________________________");
             menuColab.listarPedidos();
 
@@ -187,53 +213,6 @@ public class SistemaLanchonete {
             mJson.dumpAdministrador((Administrador) usuarioAtual);
         }
 
-        /*
-        FUNCIONAMENTO DO SISTEMA (FUNÇÃO STARTSISTEMA)
-        Devido à modularização do sistema em classes que agrupam funções semelhantes ou correlatas, 
-        as chamadas de função foram 'ocultadas' nas funções correspondentes que fazem o tratamento. 
-        Dessa forma, o teste do sistema depende da execução do mesmo, no qual será possível executar todas 
-        as funções propostas. 
-        
-        Para tanto, deixamos um administrador e um colaborador já cadastrados que permitem o login no sistema. 
-        Seus dados são: 
-        
-        ADMINISTRADOR:
-            login: admin
-            senha: admin
-        
-        COLABORADOR
-            login: colab1
-            senha: colab1
-        
-        Por sua vez, quanto as identificações das questões, estas estão feitas nas funções que contemplam 
-        as soluções propostas. Assim, podem ser encontradas no código através do comando CTRL+SHIT+F com as chaves de busca (Ex.: Questão 1)
- 
-        Assim, para que o programa seja testado, basta que seja executado. 
-        Esperamos que tenha uma boa experiência! 
-        
-        Para execução, basta retirar os indicadores de comentários
-         */
- 
-        
-        
-        /*RETIRE AQUI
-        System.out.println("""
-                           \nTESTE DE FUNCIONAMENTO DO SISTEMA - FUNÇÃO STARTSISTEMA()
-                           Esse teste se baseia no funcionamento do programa como um sistema completo
-                           cujos elementos interagem entre si para produzir funcinalidades. 
-                           Dessa forma, determinadas funcionalidades podem apresentar comportamentos 
-                           levemente diferentes daqueles observados em chamadas individuais às funções\n
-                           
-                           """);
-        SistemaLanchonete.startSistema();
-
-        E AQUI*/
- /*
-        Também foi desenvolvido interface gráfica para algumas funções do programa. Para sua execução, basta retirar os indicadores de cometários
-         e executar o programa.
-         */
-        //TelaLogin startInterface = new TelaLogin();
-        //startInterface.setVisible(true);
     }
 
     /**
